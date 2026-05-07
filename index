@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bonabola · Reporte Meta Ads · Abril 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#0a0e1a;
+  --surface:#111827;
+  --surface-2:#0f1626;
+  --border:rgba(255,255,255,0.07);
+  --accent:#00d4aa;
+  --accent2:#ff6b35;
+  --accent3:#7c3aed;
+  --text:#e8eaf0;
+  --muted:#6b7a9a;
+  --good:#10b981;
+  --warn:#f59e0b;
+  --bad:#ef4444;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:clamp(14px,1.5vw,16px);line-height:1.6;}
+
+.topbar{position:sticky;top:0;z-index:100;background:rgba(10,14,26,0.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:12px clamp(16px,4vw,48px);display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.topbar-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(14px,1.8vw,18px);letter-spacing:0.15em;color:var(--text);}
+.topbar-badge{background:rgba(0,212,170,0.12);border:1px solid rgba(0,212,170,0.3);color:var(--accent);font-size:11px;font-weight:600;padding:4px 12px;border-radius:99px;white-space:nowrap;letter-spacing:0.05em;}
+
+.header{position:relative;padding:clamp(48px,8vw,100px) clamp(16px,6vw,80px) clamp(40px,6vw,72px);overflow:hidden;border-bottom:1px solid var(--border);}
+.header::before{content:'';position:absolute;top:-120px;right:-80px;width:600px;height:600px;background:radial-gradient(circle,rgba(0,212,170,0.08) 0%,transparent 70%);pointer-events:none;}
+.header::after{content:'';position:absolute;bottom:-80px;left:60px;width:400px;height:400px;background:radial-gradient(circle,rgba(124,58,237,0.06) 0%,transparent 70%);pointer-events:none;}
+.header-eyebrow{font-size:11px;font-weight:600;letter-spacing:0.2em;color:var(--accent);text-transform:uppercase;margin-bottom:16px;}
+.header-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(32px,6vw,72px);line-height:1.05;margin-bottom:16px;}
+.header-title span{color:var(--accent);}
+.header-sub{font-size:clamp(14px,1.8vw,18px);color:var(--muted);max-width:680px;margin-bottom:40px;}
+.header-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;max-width:760px;}
+.header-meta-item{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;padding:14px 18px;}
+.header-meta-label{font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:4px;}
+.header-meta-value{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:var(--text);}
+
+.section{padding:clamp(40px,6vw,72px) clamp(16px,6vw,80px);}
+.section+.section{border-top:1px solid var(--border);}
+.section-number{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;letter-spacing:0.2em;color:var(--accent);text-transform:uppercase;margin-bottom:8px;}
+.section-heading{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(22px,3.5vw,40px);line-height:1.1;margin-bottom:clamp(24px,4vw,48px);}
+.subheading{font-family:'Syne',sans-serif;font-size:18px;margin-bottom:20px;color:var(--muted);font-weight:700;letter-spacing:0.04em;text-transform:uppercase;margin-top:32px;}
+.subheading:first-child{margin-top:0;}
+
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-bottom:32px;}
+.kpi-card{background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--accent-color,var(--accent));border-radius:12px;padding:20px 22px;position:relative;}
+.kpi-label{font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:8px;}
+.kpi-value{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(22px,3vw,32px);line-height:1;margin-bottom:8px;}
+.kpi-sub{font-size:12px;color:var(--muted);}
+.kpi-badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;padding:3px 9px;border-radius:99px;margin-top:6px;}
+.badge-good{background:rgba(16,185,129,0.15);color:var(--good);}
+.badge-warn{background:rgba(245,158,11,0.15);color:var(--warn);}
+.badge-bad{background:rgba(239,68,68,0.15);color:var(--bad);}
+.badge-info{background:rgba(0,212,170,0.12);color:var(--accent);}
+
+.alert{border-radius:10px;padding:14px 18px;font-size:13px;margin-bottom:12px;border-left:3px solid;}
+.alert-good{background:rgba(16,185,129,0.08);border-color:var(--good);color:#a7f3d0;}
+.alert-warn{background:rgba(245,158,11,0.08);border-color:var(--warn);color:#fde68a;}
+.alert-info{background:rgba(0,212,170,0.08);border-color:var(--accent);color:#a7f3d0;}
+.alert-bad{background:rgba(239,68,68,0.08);border-color:var(--bad);color:#fecaca;}
+.alert strong{font-weight:700;}
+
+.insight{background:linear-gradient(135deg,rgba(0,212,170,0.06),rgba(124,58,237,0.04));border:1px solid rgba(0,212,170,0.2);border-radius:12px;padding:18px 22px;margin-top:20px;font-size:14px;line-height:1.65;}
+.insight strong{color:var(--accent);font-weight:700;}
+
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);margin-bottom:16px;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+thead{background:rgba(255,255,255,0.04);}
+th{padding:12px 16px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);font-weight:700;white-space:nowrap;}
+td{padding:12px 16px;border-top:1px solid var(--border);vertical-align:middle;}
+tr:hover td{background:rgba(255,255,255,0.025);}
+.num{font-family:'Syne',sans-serif;font-weight:700;}
+.num-good{color:var(--good);}
+.num-warn{color:var(--warn);}
+.num-bad{color:var(--bad);}
+.num-accent{color:var(--accent);}
+.num-up{color:var(--good);}
+.num-down{color:var(--bad);}
+
+.tag{display:inline-block;font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;letter-spacing:0.05em;}
+.tag-broad{background:rgba(0,212,170,0.15);color:var(--accent);}
+.tag-padel{background:rgba(124,58,237,0.15);color:#a78bfa;}
+.tag-mofu{background:rgba(255,107,53,0.15);color:var(--accent2);}
+.tag-tofu{background:rgba(0,212,170,0.15);color:var(--accent);}
+.tag-stories{background:rgba(255,107,53,0.15);color:var(--accent2);}
+.tag-reels{background:rgba(124,58,237,0.15);color:#a78bfa;}
+.tag-feed{background:rgba(16,185,129,0.15);color:var(--good);}
+.tag-male{background:rgba(59,130,246,0.15);color:#93c5fd;}
+.tag-female{background:rgba(236,72,153,0.15);color:#f9a8d4;}
+.tag-paused{background:rgba(245,158,11,0.15);color:var(--warn);}
+
+.bar-section{margin-bottom:32px;}
+.bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.bar-label{font-size:12px;color:var(--muted);width:clamp(80px,14vw,140px);text-align:right;flex-shrink:0;}
+.bar-track{flex:1;background:rgba(255,255,255,0.06);border-radius:99px;height:28px;position:relative;overflow:hidden;}
+.bar-fill{height:100%;border-radius:99px;display:flex;align-items:center;padding:0 12px;font-size:11px;font-weight:700;color:var(--bg);}
+
+.ad-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-bottom:24px;}
+.ad-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;position:relative;}
+.ad-card-title{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;margin:8px 0 16px;line-height:1.3;min-height:36px;}
+.ad-rank-badge{margin-bottom:8px;}
+.ad-rank{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 10px;border-radius:6px;}
+.rank-top{background:rgba(0,212,170,0.15);color:var(--accent);}
+.rank-mid{background:rgba(245,158,11,0.15);color:var(--warn);}
+.rank-bot{background:rgba(239,68,68,0.1);color:var(--bad);}
+.ad-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px;}
+.ad-metric{background:rgba(255,255,255,0.03);border-radius:8px;padding:10px 12px;}
+.ad-metric-val{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;line-height:1.1;}
+.ad-metric-lbl{font-size:9px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-top:3px;font-weight:600;}
+
+.video-funnel{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:20px;}
+.funnel-title{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;margin-bottom:16px;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;}
+.funnel-row{display:flex;align-items:center;gap:14px;margin-bottom:12px;}
+.funnel-label{width:90px;font-size:12px;color:var(--muted);flex-shrink:0;}
+.funnel-bar{flex:1;height:34px;background:rgba(255,255,255,0.05);border-radius:8px;overflow:hidden;position:relative;}
+.funnel-fill{height:100%;display:flex;align-items:center;padding:0 14px;font-size:12px;font-weight:700;color:var(--bg);border-radius:8px;}
+.funnel-pct{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;width:60px;text-align:right;color:var(--text);}
+
+.placement-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 22px;}
+.placement-name{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;margin-bottom:12px;}
+.placement-metric{display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-bottom:1px dashed var(--border);}
+.placement-metric:last-child{border-bottom:none;}
+.placement-metric-label{color:var(--muted);}
+.placement-metric-value{font-family:'Syne',sans-serif;font-weight:700;}
+
+.persona-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;}
+.persona-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;position:relative;border-top:3px solid var(--accent-color,var(--accent));}
+.persona-tag{font-family:'Syne',sans-serif;font-size:10px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent-color,var(--accent));margin-bottom:6px;}
+.persona-title{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;margin-bottom:6px;}
+.persona-sub{font-size:12px;color:var(--muted);margin-bottom:16px;font-style:italic;}
+.persona-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px;}
+.persona-stat{background:rgba(255,255,255,0.03);border-radius:8px;padding:10px 12px;}
+.persona-stat-lbl{font-size:9px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:3px;font-weight:600;}
+.persona-stat-val{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;}
+.persona-desc{font-size:12px;color:var(--muted);line-height:1.55;}
+
+.aes-card{background:linear-gradient(135deg,rgba(0,212,170,0.05),rgba(124,58,237,0.04));border:1px solid var(--border);border-radius:12px;padding:20px;}
+.aes-row{display:flex;align-items:center;gap:14px;margin-bottom:10px;padding:10px 12px;background:rgba(255,255,255,0.025);border-radius:8px;}
+.aes-rank{font-family:'Syne',sans-serif;font-weight:800;font-size:14px;color:var(--accent);width:32px;flex-shrink:0;}
+.aes-seg{flex:1;font-size:13px;font-weight:600;}
+.aes-bar{flex:2;height:8px;background:rgba(255,255,255,0.06);border-radius:99px;overflow:hidden;position:relative;}
+.aes-fill{height:100%;background:linear-gradient(90deg,var(--accent),#7c3aed);border-radius:99px;}
+.aes-baseline{position:absolute;top:-2px;bottom:-2px;width:2px;background:rgba(255,255,255,0.4);left:0;}
+.aes-score{font-family:'Syne',sans-serif;font-weight:800;font-size:14px;width:50px;text-align:right;}
+
+.aes-formula{background:rgba(255,255,255,0.03);border:1px dashed var(--border);border-radius:10px;padding:18px 22px;font-family:'DM Sans',monospace;font-size:13px;line-height:1.8;margin-bottom:24px;}
+.aes-formula code{background:rgba(0,212,170,0.1);color:var(--accent);padding:2px 8px;border-radius:4px;font-family:'DM Sans',sans-serif;font-weight:600;}
+
+.step-card{background:var(--surface);border:1px solid var(--border);border-left:4px solid;border-radius:12px;padding:20px 24px;margin-bottom:14px;}
+.step-card.urgent{border-left-color:var(--bad);}
+.step-card.important{border-left-color:var(--warn);}
+.step-card.improve{border-left-color:var(--accent3);}
+.step-priority{display:inline-block;font-size:10px;font-weight:800;padding:4px 12px;border-radius:99px;letter-spacing:0.08em;margin-bottom:10px;}
+.urgent .step-priority{background:rgba(239,68,68,0.15);color:var(--bad);}
+.important .step-priority{background:rgba(245,158,11,0.15);color:var(--warn);}
+.improve .step-priority{background:rgba(124,58,237,0.15);color:#a78bfa;}
+.step-title{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;margin-bottom:8px;}
+.step-desc{font-size:13px;color:var(--muted);line-height:1.65;}
+
+.conclusion-block p{margin-bottom:18px;font-size:15px;line-height:1.75;color:var(--text);}
+.conclusion-block p strong{color:var(--accent);}
+
+.footer{padding:48px clamp(16px,6vw,80px);background:rgba(255,255,255,0.02);border-top:1px solid var(--border);text-align:center;}
+.footer-logo{font-family:'Syne',sans-serif;font-weight:800;letter-spacing:0.2em;font-size:14px;color:var(--muted);margin-bottom:8px;}
+.footer-meta{font-size:13px;color:var(--muted);margin-bottom:16px;}
+.footer-contact{font-size:12px;color:var(--muted);line-height:1.7;}
+.footer-contact a{color:var(--accent);text-decoration:none;}
+.footer-contact a:hover{text-decoration:underline;}
+
+@media (max-width:600px){
+  .ad-metrics{grid-template-columns:repeat(2,1fr);}
+  .ad-metric-val{font-size:13px;}
+  .bar-label{width:60px;font-size:11px;}
+  .funnel-label{width:70px;font-size:11px;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-logo">B O N A B O L A</div>
+  <div class="topbar-badge">Abril 2026 · Meta Ads · España</div>
+</div>
+
+<div class="header">
+  <div class="header-eyebrow">Navy Marketing · Reporte de rendimiento</div>
+  <h1 class="header-title">Meta Ads<br/><span>Abril 2026</span></h1>
+  <p class="header-sub">Mes de transición estratégica — escalado del TOFU (Calentamiento de Cuenta) y lanzamiento del primer conjunto MOFU dirigido a la audiencia interesada en pádel hacia conversión. Mercado: España.</p>
+  <div class="header-meta">
+    <div class="header-meta-item">
+      <div class="header-meta-label">Periodo</div>
+      <div class="header-meta-value">01 – 30 Abr 2026</div>
+    </div>
+    <div class="header-meta-item">
+      <div class="header-meta-label">Mercado</div>
+      <div class="header-meta-value">España 🇪🇸</div>
+    </div>
+    <div class="header-meta-item">
+      <div class="header-meta-label">Moneda</div>
+      <div class="header-meta-value">EUR €</div>
+    </div>
+    <div class="header-meta-item">
+      <div class="header-meta-label">Objetivo</div>
+      <div class="header-meta-value">TOFU + apertura MOFU</div>
+    </div>
+  </div>
+</div>
+
+<!-- 01 RESUMEN EJECUTIVO -->
+<div class="section">
+  <div class="section-number">01</div>
+  <h2 class="section-heading">Resumen Ejecutivo</h2>
+
+  <div class="kpi-grid">
+    <div class="kpi-card" style="--accent-color:var(--accent)">
+      <div class="kpi-label">Gasto Total</div>
+      <div class="kpi-value">€555,73</div>
+      <div class="kpi-sub">TOFU €404,54 + MOFU €151,19</div>
+      <div class="kpi-badge badge-info">▲ +162% vs marzo</div>
+    </div>
+    <div class="kpi-card" style="--accent-color:var(--accent3)">
+      <div class="kpi-label">Impresiones</div>
+      <div class="kpi-value">224.298</div>
+      <div class="kpi-sub">Alcance combinado: 151.029 personas</div>
+      <div class="kpi-badge badge-good">▲ +127% vs marzo</div>
+    </div>
+    <div class="kpi-card" style="--accent-color:var(--good)">
+      <div class="kpi-label">Frecuencia (TOFU)</div>
+      <div class="kpi-value">1,53×</div>
+      <div class="kpi-sub">Media ponderada · Calentamiento</div>
+      <div class="kpi-badge badge-good">✓ Sin saturación</div>
+    </div>
+    <div class="kpi-card" style="--accent-color:var(--accent2)">
+      <div class="kpi-label">CPM medio</div>
+      <div class="kpi-value">€2,48</div>
+      <div class="kpi-sub">TOFU €2,25 · MOFU €3,38</div>
+      <div class="kpi-badge badge-warn">▲ +15% vs marzo</div>
+    </div>
+    <div class="kpi-card" style="--accent-color:var(--accent)">
+      <div class="kpi-label">Visitas al Perfil de IG</div>
+      <div class="kpi-value">12.702</div>
+      <div class="kpi-sub">Solo TOFU · Calentamiento de cuenta</div>
+      <div class="kpi-badge badge-good">▲ +87% vs marzo</div>
+    </div>
+    <div class="kpi-card" style="--accent-color:var(--good)">
+      <div class="kpi-label">Coste por Visita al Perfil</div>
+      <div class="kpi-value">€0,032</div>
+      <div class="kpi-sub">TOFU · Antes "CPR"</div>
+      <div class="kpi-badge badge-good">✓ Estable vs marzo (+3%)</div>
+    </div>
+    <div class="kpi-card" style="--accent-color:var(--accent3)">
+      <div class="kpi-label">CTR enlace TOFU</div>
+      <div class="kpi-value">7,12%</div>
+      <div class="kpi-sub">Tasa clic en enlace</div>
+      <div class="kpi-badge badge-good">▲ +0,18 pp vs marzo</div>
+    </div>
+    <div class="kpi-card" style="--accent-color:var(--accent2)">
+      <div class="kpi-label">Añadidos al Carrito (MOFU)</div>
+      <div class="kpi-value">10</div>
+      <div class="kpi-sub">5 AD4 · 3 AD3 · 1 AD12 · 1 AD5</div>
+      <div class="kpi-badge badge-info">Primeros datos · 16 días</div>
+    </div>
+    <div class="kpi-card" style="--accent-color:var(--warn)">
+      <div class="kpi-label">Coste por Añadido al Carrito</div>
+      <div class="kpi-value">€15,12</div>
+      <div class="kpi-sub">€151,19 ÷ 10 ATC</div>
+      <div class="kpi-badge badge-warn">⚠ Alto · esperable inicio</div>
+    </div>
+    <div class="kpi-card" style="--accent-color:var(--bad)">
+      <div class="kpi-label">Compras MOFU</div>
+      <div class="kpi-value">0</div>
+      <div class="kpi-sub">562 clics · 507 LPV · 10 ATC</div>
+      <div class="kpi-badge badge-warn">⚠ Falta el último paso</div>
+    </div>
+  </div>
+
+  <div class="alert alert-good"><strong>✓ Lo bueno:</strong> El TOFU pasa la prueba de escala con nota — duplicar el presupuesto solo encarece el Coste por Visita al Perfil un 3% (€0,031 → €0,032), el CTR sube ligeramente al 7,12% y el volumen de visitas al perfil casi se duplica (6.800 → 12.702). El motor de calentamiento funciona y se puede seguir escalando.</div>
+  <div class="alert alert-warn"><strong>⚠ Lo que vigilar:</strong> El 15 de abril se lanzó el primer conjunto MOFU (<em>MOFU-Audiencia Paddle</em>) con el objetivo de generar compras desde la audiencia caliente construida en marzo. Ha invertido €151,19 en 16 días, generando 562 clics, 507 LPV y <strong>10 añadidos al carrito (CPATC €15,12)</strong>, pero <strong>0 compras cerradas</strong>. El embudo está moviendo intención de compra, pero falla en el último paso (ATC → Compra). Hay que revisar checkout y métodos de pago en mayo.</div>
+  <div class="alert alert-info"><strong>ℹ Nota estructural:</strong> El AdSet TOFU "AUDIENCIA PÁDEL" se reactivó del 1 al 7 de abril (€45,26 invertidos, 1.562 visitas perfil) y se volvió a pausar. A partir del 8 de abril, todo el calentamiento pasó a concentrarse en <strong>AUDIENCIA BROAD</strong> (€359,28 los 30 días). Decisión coherente con la lectura de marzo.</div>
+</div>
+
+<!-- 02 DESTINO/PRODUCTO -->
+<div class="section">
+  <div class="section-number">02</div>
+  <h2 class="section-heading">Análisis por Destino / Producto</h2>
+
+  <p style="color:var(--muted);margin-bottom:24px;font-size:14px;line-height:1.7;max-width:780px;">
+  Bonabola sigue trabajando un único mercado (España) y un catálogo de palas de pádel. El destino del tráfico se reparte ahora entre dos objetivos: <strong>perfil de Instagram</strong> (calentamiento de cuenta · TOFU) y <strong>landing de tienda</strong> (MOFU · audiencia pádel hacia conversión). En abril el split de inversión es 73% TOFU / 27% MOFU.
+  </p>
+
+  <div class="kpi-grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+    <div class="kpi-card" style="--accent-color:var(--accent)">
+      <div class="kpi-label">Destino · Perfil Instagram (TOFU)</div>
+      <div class="kpi-value">€404,54</div>
+      <div class="kpi-sub">12.702 visitas perfil · 26.202 ThruPlays · 12.786 clics enlace</div>
+      <div class="kpi-badge badge-good">✓ 72,8% del gasto</div>
+    </div>
+    <div class="kpi-card" style="--accent-color:var(--accent2)">
+      <div class="kpi-label">Destino · Landing tienda (MOFU)</div>
+      <div class="kpi-value">€151,19</div>
+      <div class="kpi-sub">562 clics · 507 LPV · 10 ATC · 0 compras</div>
+      <div class="kpi-badge badge-warn">⚠ 27,2% · sin ROAS aún</div>
+    </div>
+  </div>
+
+  <div class="bar-section">
+    <div class="subheading">Distribución del gasto por destino</div>
+    <div class="bar-row">
+      <div class="bar-label">Perfil IG</div>
+      <div class="bar-track"><div class="bar-fill" style="width:72.8%;background:linear-gradient(90deg,var(--accent),#00b8a0);">€404,54 · 73%</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Landing</div>
+      <div class="bar-track"><div class="bar-fill" style="width:27.2%;background:linear-gradient(90deg,var(--accent2),#ff8a5b);">€151,19 · 27%</div></div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <strong>Lectura:</strong> Es la primera vez que se abre canal hacia la web de venta. El reparto 73/27 es razonable para una cuenta que aún consolida notoriedad mientras prueba conversión. El MOFU debe leerse como mes de aprendizaje (16 días desde lanzamiento) — el funnel está moviendo gente al carrito (10 ATC), pero la conversión final aún no se cierra. La evaluación real corresponderá a mayo, con un ciclo completo de píxel.
+  </div>
+</div>
+
+<!-- 03 CAMPAÑA -->
+<div class="section">
+  <div class="section-number">03</div>
+  <h2 class="section-heading">Análisis por Campaña — Δ% vs Marzo</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Campaña</th>
+          <th>Métrica</th>
+          <th>Marzo 2026</th>
+          <th>Abril 2026</th>
+          <th>Δ%</th>
+          <th>Lectura</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="6"><strong>INTERACCIÓN PERFIL</strong><br/><span class="tag tag-tofu">TOFU · Calentamiento</span></td>
+          <td>Gasto</td>
+          <td class="num">€211,76</td>
+          <td class="num num-accent">€404,54</td>
+          <td class="num num-up">+91,0%</td>
+          <td>Escalado intencional</td>
+        </tr>
+        <tr>
+          <td>Impresiones</td>
+          <td class="num">98.673</td>
+          <td class="num">179.608</td>
+          <td class="num num-up">+82,0%</td>
+          <td>Crecimiento proporcional</td>
+        </tr>
+        <tr>
+          <td>Visitas al Perfil de IG</td>
+          <td class="num">6.800</td>
+          <td class="num">12.702</td>
+          <td class="num num-up">+86,8%</td>
+          <td>Volumen casi x2</td>
+        </tr>
+        <tr>
+          <td>CPM</td>
+          <td class="num">€2,15</td>
+          <td class="num">€2,25</td>
+          <td class="num num-warn">+4,7%</td>
+          <td>Subida mínima al escalar</td>
+        </tr>
+        <tr>
+          <td>Coste por Visita al Perfil</td>
+          <td class="num">€0,031</td>
+          <td class="num">€0,032</td>
+          <td class="num">+2,9%</td>
+          <td>Eficiencia mantenida</td>
+        </tr>
+        <tr>
+          <td>CTR enlace</td>
+          <td class="num">6,94%</td>
+          <td class="num num-accent">7,12%</td>
+          <td class="num num-up">+0,18 pp</td>
+          <td>Mejora ligera</td>
+        </tr>
+        <tr>
+          <td rowspan="8"><strong>MOFU</strong><br/><span class="tag tag-mofu">MOFU · Conversión</span></td>
+          <td>Gasto</td>
+          <td class="num" style="color:var(--muted)">— (no activa)</td>
+          <td class="num num-accent">€151,19</td>
+          <td class="num">Nuevo</td>
+          <td>Lanzamiento 15 abr</td>
+        </tr>
+        <tr>
+          <td>Impresiones</td>
+          <td class="num" style="color:var(--muted)">—</td>
+          <td class="num">44.690</td>
+          <td class="num">Nuevo</td>
+          <td>16 días en aire</td>
+        </tr>
+        <tr>
+          <td>Clics enlace</td>
+          <td class="num" style="color:var(--muted)">—</td>
+          <td class="num">562</td>
+          <td class="num">Nuevo</td>
+          <td>CTR 1,26%</td>
+        </tr>
+        <tr>
+          <td>Visitas landing</td>
+          <td class="num" style="color:var(--muted)">—</td>
+          <td class="num">507</td>
+          <td class="num">Nuevo</td>
+          <td>Coste/LPV €0,30</td>
+        </tr>
+        <tr>
+          <td>Añadidos al Carrito</td>
+          <td class="num" style="color:var(--muted)">—</td>
+          <td class="num num-accent">10</td>
+          <td class="num">Nuevo</td>
+          <td>Primer dato del mes</td>
+        </tr>
+        <tr>
+          <td>Coste por ATC</td>
+          <td class="num" style="color:var(--muted)">—</td>
+          <td class="num">€15,12</td>
+          <td class="num">Nuevo</td>
+          <td>Esperable inicio</td>
+        </tr>
+        <tr>
+          <td>Compras</td>
+          <td class="num" style="color:var(--muted)">—</td>
+          <td class="num num-bad">0</td>
+          <td class="num">Nuevo</td>
+          <td>Sin conversión todavía</td>
+        </tr>
+        <tr>
+          <td>CPM</td>
+          <td class="num" style="color:var(--muted)">—</td>
+          <td class="num">€3,38</td>
+          <td class="num">Nuevo</td>
+          <td>+50% sobre TOFU</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="insight">
+    <strong>Lectura clave:</strong> El TOFU escala con eficiencia casi perfecta — duplicar el presupuesto solo encarece el Coste por Visita al Perfil un 3% y mejora el CTR. Confirmación de que la audiencia y el creative-fit están funcionando. El MOFU está en fase de aprendizaje (16 días en aire) y muestra señales positivas en intención de compra (10 ATC), pero ninguna conversión cerrada — hay que darle 4-6 semanas más antes de juzgarlo en términos de ROAS.
+  </div>
+</div>
+
+<!-- 04 PAÍS -->
+<div class="section">
+  <div class="section-number">04</div>
+  <h2 class="section-heading">Análisis por País de Origen</h2>
+
+  <div class="kpi-grid">
+    <div class="kpi-card" style="--accent-color:var(--accent)">
+      <div class="kpi-label">🇪🇸 España (TOFU)</div>
+      <div class="kpi-value">€404,54</div>
+      <div class="kpi-sub">179.608 imp · 12.786 clics enlace · 12.702 visitas perfil</div>
+      <div class="kpi-badge badge-good">100% inversión TOFU</div>
+    </div>
+    <div class="kpi-card" style="--accent-color:var(--accent2)">
+      <div class="kpi-label">🇪🇸 España (MOFU)</div>
+      <div class="kpi-value">€151,19</div>
+      <div class="kpi-sub">44.690 imp · 562 clics · 507 LPV · 10 ATC</div>
+      <div class="kpi-badge badge-good">100% inversión MOFU</div>
+    </div>
+  </div>
+
+  <div class="alert alert-info">
+    <strong>ℹ Geo-targeting cerrado:</strong> Tanto TOFU como MOFU están segmentados exclusivamente a España, en línea con el plan de aterrizaje de marca y la operativa logística actual. No hay derrame ni leakage geográfico, lo que permite comparar mes a mes sin sesgos. La internacionalización (mercados como Italia o Francia) sigue fuera de scope para este Q2 según el onboarding.
+  </div>
+</div>
+
+<!-- 05 DEMOGRAFÍA -->
+<div class="section">
+  <div class="section-number">05</div>
+  <h2 class="section-heading">Análisis Demográfico</h2>
+
+  <div class="subheading">Por género (TOFU)</div>
+  <div class="kpi-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+    <div class="kpi-card" style="--accent-color:#3b82f6">
+      <div class="kpi-label"><span class="tag tag-male">Hombre</span></div>
+      <div class="kpi-value" style="color:#93c5fd">€343,92</div>
+      <div class="kpi-sub">154.336 imp · 10.841 visitas perfil</div>
+      <div class="kpi-sub" style="margin-top:4px;">CTR 7,08% · CPM €2,23 · Coste/Visita €0,032</div>
+      <div class="kpi-badge badge-info">85,0% del gasto</div>
+    </div>
+    <div class="kpi-card" style="--accent-color:#ec4899">
+      <div class="kpi-label"><span class="tag tag-female">Mujer</span></div>
+      <div class="kpi-value" style="color:#f9a8d4">€57,44</div>
+      <div class="kpi-sub">23.767 imp · 1.750 visitas perfil</div>
+      <div class="kpi-sub" style="margin-top:4px;">CTR 7,38% · CPM €2,42 · Coste/Visita €0,033</div>
+      <div class="kpi-badge badge-info">14,2% del gasto</div>
+    </div>
+    <div class="kpi-card" style="--accent-color:var(--muted)">
+      <div class="kpi-label">No declarado</div>
+      <div class="kpi-value" style="color:var(--muted)">€3,18</div>
+      <div class="kpi-sub">1.505 imp · 111 visitas perfil</div>
+      <div class="kpi-sub" style="margin-top:4px;">CTR 7,51% · Coste/Visita €0,029</div>
+      <div class="kpi-badge badge-info">0,8% del gasto</div>
+    </div>
+  </div>
+
+  <div class="alert alert-warn">
+    <strong>⚠ Mejora ligera del balance hombre/mujer:</strong> En marzo el reparto era 91,3% / 7,8%. En abril es 85,0% / 14,2% — la cuota femenina prácticamente se duplica, y el CTR femenino (7,38%) es <em>incluso superior</em> al masculino (7,08%). El sesgo del algoritmo hacia hombres se mantiene por el mayor volumen de audiencia activa en pádel, pero hay señal clara de que el contenido funciona en ambos públicos.
+  </div>
+
+  <div class="subheading">Por edad — Gasto y Visitas al Perfil (TOFU)</div>
+
+  <div class="bar-section">
+    <div class="bar-row">
+      <div class="bar-label">18–24</div>
+      <div class="bar-track"><div class="bar-fill" style="width:3.4%;background:linear-gradient(90deg,var(--accent3),#a78bfa);">€13,86 · 412 visitas</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">25–34</div>
+      <div class="bar-track"><div class="bar-fill" style="width:13.5%;background:linear-gradient(90deg,var(--accent),#00b8a0);">€54,65 · 1.683 visitas</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">35–44</div>
+      <div class="bar-track"><div class="bar-fill" style="width:26.5%;background:linear-gradient(90deg,var(--accent),#00b8a0);">€107,10 · 3.344 visitas</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">45–54</div>
+      <div class="bar-track"><div class="bar-fill" style="width:32.9%;background:linear-gradient(90deg,var(--accent2),#ff8a5b);">€133,00 · 4.172 visitas</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">55–64</div>
+      <div class="bar-track"><div class="bar-fill" style="width:17.8%;background:linear-gradient(90deg,var(--warn),#fbbf24);">€72,03 · 2.291 visitas</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">65+</div>
+      <div class="bar-track"><div class="bar-fill" style="width:5.9%;background:linear-gradient(90deg,var(--muted),#4b5680);">€23,89 · 800 visitas</div></div>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Edad</th>
+          <th>Gasto</th>
+          <th>Impresiones</th>
+          <th>CTR enlace</th>
+          <th>CPM</th>
+          <th>Coste por Visita</th>
+          <th>Visitas Perfil</th>
+          <th>% Gasto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>18–24</strong></td><td class="num">€13,86</td><td class="num">10.401</td><td class="num">3,97%</td><td class="num">€1,33</td><td class="num">€0,034</td><td class="num">412</td><td class="num">3,4%</td></tr>
+        <tr><td><strong>25–34</strong></td><td class="num">€54,65</td><td class="num">36.849</td><td class="num">4,59%</td><td class="num">€1,48</td><td class="num">€0,032</td><td class="num">1.683</td><td class="num">13,5%</td></tr>
+        <tr><td><strong>35–44</strong> TOP</td><td class="num">€107,10</td><td class="num">54.993</td><td class="num">6,12%</td><td class="num">€1,95</td><td class="num">€0,032</td><td class="num">3.344</td><td class="num">26,5%</td></tr>
+        <tr><td><strong>45–54</strong> TOP</td><td class="num num-accent">€133,00</td><td class="num">49.401</td><td class="num">8,51%</td><td class="num">€2,69</td><td class="num">€0,032</td><td class="num">4.172</td><td class="num">32,9%</td></tr>
+        <tr><td><strong>55–64</strong></td><td class="num">€72,03</td><td class="num">21.367</td><td class="num num-good">10,80%</td><td class="num">€3,37</td><td class="num">€0,031</td><td class="num">2.291</td><td class="num">17,8%</td></tr>
+        <tr><td><strong>65+</strong></td><td class="num">€23,89</td><td class="num">6.595</td><td class="num num-good">12,19%</td><td class="num">€3,62</td><td class="num num-good">€0,030</td><td class="num">800</td><td class="num">5,9%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="insight">
+    <strong>Patrón replicado vs marzo:</strong> el CTR crece monotónicamente con la edad — del 3,97% en 18-24 al 12,19% en 65+. El CPM también sube (más caro impactar a mayores) pero el Coste por Visita al Perfil se mantiene plano e incluso baja (€0,030 en 65+). La franja <strong>35–54 concentra el 59% del gasto</strong> y entrega 7.516 visitas al perfil, alineada con el buyer persona. La franja <strong>55–64</strong> es la más eficiente en CTR/Coste-por-Visita combinados con margen para escalar.
+  </div>
+
+  <div class="subheading" style="margin-top:40px;">Buyer Persona por Segmento</div>
+  <p style="color:var(--muted);margin-bottom:20px;font-size:14px;">Perfiles que mejor han respondido a los anuncios en abril 2026. Mercado único: España 🇪🇸</p>
+
+  <div class="persona-grid">
+    <div class="persona-card" style="--accent-color:var(--accent)">
+      <div class="persona-tag">Perfil Principal</div>
+      <div class="persona-title">Hombre · 45–54</div>
+      <div class="persona-sub">El núcleo de la conversión — sigue siendo el rey</div>
+      <div class="persona-stats">
+        <div class="persona-stat"><div class="persona-stat-lbl">CTR</div><div class="persona-stat-val">8,52%</div></div>
+        <div class="persona-stat"><div class="persona-stat-lbl">Coste/Visita</div><div class="persona-stat-val">€0,032</div></div>
+        <div class="persona-stat"><div class="persona-stat-lbl">Visitas Perfil</div><div class="persona-stat-val">3.595</div></div>
+        <div class="persona-stat"><div class="persona-stat-lbl">Gasto</div><div class="persona-stat-val">€114,51</div></div>
+      </div>
+      <div class="persona-desc">El más afín al posicionamiento Bonabola — pádel como estilo de vida, poder adquisitivo medio-alto. Concentra el 28% del gasto del TOFU.</div>
+    </div>
+
+    <div class="persona-card" style="--accent-color:var(--accent3)">
+      <div class="persona-tag">Perfil Secundario</div>
+      <div class="persona-title">Hombre · 35–44</div>
+      <div class="persona-sub">Volumen sólido y eficiente</div>
+      <div class="persona-stats">
+        <div class="persona-stat"><div class="persona-stat-lbl">CTR</div><div class="persona-stat-val">9,13%</div></div>
+        <div class="persona-stat"><div class="persona-stat-lbl">Coste/Visita</div><div class="persona-stat-val">€0,032</div></div>
+        <div class="persona-stat"><div class="persona-stat-lbl">Visitas Perfil</div><div class="persona-stat-val">2.968</div></div>
+        <div class="persona-stat"><div class="persona-stat-lbl">Gasto</div><div class="persona-stat-val">€95,24</div></div>
+      </div>
+      <div class="persona-desc">Segundo mayor volumen del mes. Equilibrio óptimo coste/resultados. Perfil reincidente de marzo con métricas estables.</div>
+    </div>
+
+    <div class="persona-card" style="--accent-color:#ec4899">
+      <div class="persona-tag">Perfil Emergente</div>
+      <div class="persona-title">Mujer · 35–54</div>
+      <div class="persona-sub">Oportunidad de crecimiento</div>
+      <div class="persona-stats">
+        <div class="persona-stat"><div class="persona-stat-lbl">CTR</div><div class="persona-stat-val">7,38%</div></div>
+        <div class="persona-stat"><div class="persona-stat-lbl">Coste/Visita</div><div class="persona-stat-val">€0,032</div></div>
+        <div class="persona-stat"><div class="persona-stat-lbl">Visitas Perfil</div><div class="persona-stat-val">889</div></div>
+        <div class="persona-stat"><div class="persona-stat-lbl">Gasto</div><div class="persona-stat-val">€28,59</div></div>
+      </div>
+      <div class="persona-desc">CTR superior al masculino con inversión todavía baja. Subida vs marzo (€16,44 → €28,59). Hueco claro para línea textil mujer.</div>
+    </div>
+
+    <div class="persona-card" style="--accent-color:var(--good)">
+      <div class="persona-tag">Sorpresa del Mes</div>
+      <div class="persona-title">Hombre · 65+</div>
+      <div class="persona-sub">Mejor CTR — mejor Coste por Visita</div>
+      <div class="persona-stats">
+        <div class="persona-stat"><div class="persona-stat-lbl">CTR</div><div class="persona-stat-val">16,59%</div></div>
+        <div class="persona-stat"><div class="persona-stat-lbl">Coste/Visita</div><div class="persona-stat-val">€0,029</div></div>
+        <div class="persona-stat"><div class="persona-stat-lbl">Visitas Perfil</div><div class="persona-stat-val">624</div></div>
+        <div class="persona-stat"><div class="persona-stat-lbl">Gasto</div><div class="persona-stat-val">€18,33</div></div>
+      </div>
+      <div class="persona-desc">Coste por Visita más bajo de toda la campaña. CTR del 16,59% (vs 12,5% en marzo). Volumen pequeño pero rendimiento desproporcionado. Candidato para AdSet propio.</div>
+    </div>
+  </div>
+
+  <div class="subheading" style="margin-top:40px;">Por placement (TOFU)</div>
+  <div class="kpi-grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));">
+    <div class="placement-card">
+      <div class="placement-name"><span class="tag tag-stories">Instagram Stories</span></div>
+      <div class="placement-metric"><span class="placement-metric-label">Gasto</span><span class="placement-metric-value num">€385,69</span></div>
+      <div class="placement-metric"><span class="placement-metric-label">Impresiones</span><span class="placement-metric-value num">167.503</span></div>
+      <div class="placement-metric"><span class="placement-metric-label">CTR enlace</span><span class="placement-metric-value num num-good">7,37%</span></div>
+      <div class="placement-metric"><span class="placement-metric-label">CPM</span><span class="placement-metric-value num">€2,30</span></div>
+      <div class="placement-metric"><span class="placement-metric-label">Coste/Visita</span><span class="placement-metric-value num num-good">€0,031</span></div>
+    </div>
+    <div class="placement-card">
+      <div class="placement-name"><span class="tag tag-reels">Instagram Reels</span></div>
+      <div class="placement-metric"><span class="placement-metric-label">Gasto</span><span class="placement-metric-value num">€15,10</span></div>
+      <div class="placement-metric"><span class="placement-metric-label">Impresiones</span><span class="placement-metric-value num">10.465</span></div>
+      <div class="placement-metric"><span class="placement-metric-label">CTR enlace</span><span class="placement-metric-value num">3,62%</span></div>
+      <div class="placement-metric"><span class="placement-metric-label">CPM</span><span class="placement-metric-value num">€1,44</span></div>
+      <div class="placement-metric"><span class="placement-metric-label">Coste/Visita</span><span class="placement-metric-value num">€0,040</span></div>
+    </div>
+    <div class="placement-card">
+      <div class="placement-name"><span class="tag tag-feed">Instagram Feed</span></div>
+      <div class="placement-metric"><span class="placement-metric-label">Gasto</span><span class="placement-metric-value num">€3,75</span></div>
+      <div class="placement-metric"><span class="placement-metric-label">Impresiones</span><span class="placement-metric-value num">1.622</span></div>
+      <div class="placement-metric"><span class="placement-metric-label">CTR enlace</span><span class="placement-metric-value num">4,19%</span></div>
+      <div class="placement-metric"><span class="placement-metric-label">CPM</span><span class="placement-metric-value num">€2,31</span></div>
+      <div class="placement-metric"><span class="placement-metric-label">Coste/Visita</span><span class="placement-metric-value num">€0,055</span></div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <strong>Stories sigue siendo la reina absoluta del TOFU</strong> — 95% del gasto y mejor CTR. Reels obtiene CPM más barato (€1,44) pero peor CTR enlace (3,62%): es lógico, el formato Reels prioriza completion rate y view-through, no el clic. <strong>En MOFU la distribución se reparte más:</strong> Stories 49%, Feed 35%, Reels 17% — Feed adquiere protagonismo porque las palas (carruseles estáticos) funcionan mejor en formato fijo.
+  </div>
+</div>
+
+<!-- 06 CAMBIOS ESTRUCTURALES -->
+<div class="section">
+  <div class="section-number">06</div>
+  <h2 class="section-heading">Cambios Estructurales & Frecuencia</h2>
+
+  <div class="subheading">Cambios estructurales del mes</div>
+
+  <div class="step-card urgent">
+    <span class="step-priority">🔴 CAMBIO CLAVE</span>
+    <div class="step-title">Lanzamiento del MOFU el 15 de abril</div>
+    <div class="step-desc">
+      Se activó la primera campaña hacia conversión: <em>MOFU-Audiencia Paddle</em> con 5 creatividades de producto (palas Heptra Dorada, Bevel Blanca, Pala Negra, Jugador Brazo en Alto, Jugador Defensivo). Ramp-up gradual: del 15 al 30 abril gastó €151,19 (€9,5/día medio), generó 562 clics enlace, 507 LPV y <strong>10 añadidos al carrito (CPATC €15,12)</strong>. <strong>0 compras cerradas</strong> — fase de aprendizaje del píxel y revisión de checkout pendiente.
+    </div>
+  </div>
+
+  <div class="step-card important">
+    <span class="step-priority">🟡 RE-PAUSA</span>
+    <div class="step-title">"AUDIENCIA PÁDEL" en TOFU se vuelve a pausar el 7 de abril</div>
+    <div class="step-desc">
+      El conjunto <em>INTERACCIÓN PERFIL · AUDIENCIA PÁDEL</em> se reactivó el 1 de abril, gastó €45,26 en 7 días con 1.562 visitas perfil (Coste/Visita €0,029) y se volvió a pausar el día 7. A partir del 8, todo el TOFU pasó a concentrarse en <strong>AUDIENCIA BROAD</strong>, en línea con la lectura de marzo de que ambas audiencias rinden igual y Broad permite mayor escala.
+    </div>
+  </div>
+
+  <div class="step-card improve">
+    <span class="step-priority">🟣 ESCALADO</span>
+    <div class="step-title">Subida de presupuesto en TOFU Broad</div>
+    <div class="step-desc">
+      El AdSet Broad pasó del entorno €10/día (marzo) a €15/día (abril). El gasto diario osciló entre €6 y €18 según ritmo del algoritmo. El escalado se ha hecho <strong>sin pérdida de eficiencia</strong>: el Coste por Visita al Perfil se mantiene en €0,032 con un +91% más de inversión. Confirma que la cuenta tiene margen para seguir subiendo.
+    </div>
+  </div>
+
+  <div class="subheading" style="margin-top:40px;">Frecuencia & saturación</div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card" style="--accent-color:var(--good)">
+      <div class="kpi-label">Frecuencia TOFU global</div>
+      <div class="kpi-value">1,53×</div>
+      <div class="kpi-sub">Media ponderada · Calentamiento</div>
+      <div class="kpi-badge badge-good">✓ Zona óptima</div>
+    </div>
+    <div class="kpi-card" style="--accent-color:var(--accent)">
+      <div class="kpi-label">Broad — Stories</div>
+      <div class="kpi-value">1,49×</div>
+      <div class="kpi-sub">Placement principal Broad</div>
+      <div class="kpi-badge badge-good">✓ Sin saturación</div>
+    </div>
+    <div class="kpi-card" style="--accent-color:var(--accent3)">
+      <div class="kpi-label">Pádel — Stories (1-7 abr)</div>
+      <div class="kpi-value">1,29×</div>
+      <div class="kpi-sub">Placement principal Pádel</div>
+      <div class="kpi-badge badge-good">✓ Sin saturación</div>
+    </div>
+    <div class="kpi-card" style="--accent-color:var(--warn)">
+      <div class="kpi-label">Frecuencia MOFU</div>
+      <div class="kpi-value">1,32×</div>
+      <div class="kpi-sub">MOFU-Audiencia Paddle</div>
+      <div class="kpi-badge badge-good">✓ Margen amplio</div>
+    </div>
+  </div>
+
+  <div class="alert alert-good">
+    <strong>✓ Sin riesgo de saturación:</strong> Ningún conjunto supera el 1,55× de frecuencia media. El umbral de alerta para TOFU está en 3× — estamos muy lejos. La cuenta tiene margen estructural para seguir escalando presupuesto sin comprometer la experiencia del usuario, lo que valida la estrategia de subir gasto en mayo si el MOFU empieza a convertir.
+  </div>
+</div>
+
+<!-- 07 CREATIVIDADES + VÍDEO -->
+<div class="section">
+  <div class="section-number">07</div>
+  <h2 class="section-heading">Top Creatividades & Métricas de Vídeo</h2>
+
+  <div class="subheading">TOFU · Anuncios destacados</div>
+
+  <div class="ad-cards">
+    <div class="ad-card">
+      <div class="ad-rank-badge"><span class="ad-rank rank-top">🏆 TOP 1</span></div>
+      <div class="ad-card-title">"During this process… resin"</div>
+      <div class="ad-metrics">
+        <div class="ad-metric"><div class="ad-metric-val" style="color:var(--accent)">€195,42</div><div class="ad-metric-lbl">Gasto</div></div>
+        <div class="ad-metric"><div class="ad-metric-val">6.238</div><div class="ad-metric-lbl">Visitas Perfil</div></div>
+        <div class="ad-metric"><div class="ad-metric-val" style="color:var(--good)">€0,031</div><div class="ad-metric-lbl">Coste/Visita</div></div>
+        <div class="ad-metric"><div class="ad-metric-val">85.661</div><div class="ad-metric-lbl">Impresiones</div></div>
+        <div class="ad-metric"><div class="ad-metric-val" style="color:var(--accent)">7,30%</div><div class="ad-metric-lbl">CTR</div></div>
+        <div class="ad-metric"><div class="ad-metric-val">33,0%</div><div class="ad-metric-lbl">Hook 3s</div></div>
+      </div>
+      <div class="kpi-badge badge-good" style="margin-top:12px;">Coste/Visita mejor que en marzo (€0,055 → €0,031)</div>
+    </div>
+
+    <div class="ad-card">
+      <div class="ad-rank-badge"><span class="ad-rank rank-top">TOP 2</span></div>
+      <div class="ad-card-title">"Bonabola is born here."</div>
+      <div class="ad-metrics">
+        <div class="ad-metric"><div class="ad-metric-val">€191,60</div><div class="ad-metric-lbl">Gasto</div></div>
+        <div class="ad-metric"><div class="ad-metric-val">6.025</div><div class="ad-metric-lbl">Visitas Perfil</div></div>
+        <div class="ad-metric"><div class="ad-metric-val" style="color:var(--good)">€0,032</div><div class="ad-metric-lbl">Coste/Visita</div></div>
+        <div class="ad-metric"><div class="ad-metric-val">81.938</div><div class="ad-metric-lbl">Impresiones</div></div>
+        <div class="ad-metric"><div class="ad-metric-val" style="color:var(--accent)">7,42%</div><div class="ad-metric-lbl">CTR</div></div>
+        <div class="ad-metric"><div class="ad-metric-val">40,8%</div><div class="ad-metric-lbl">Hook 3s</div></div>
+      </div>
+      <div class="kpi-badge badge-good" style="margin-top:12px;">El ganador de marzo se mantiene a tope</div>
+    </div>
+
+    <div class="ad-card">
+      <div class="ad-rank-badge"><span class="ad-rank rank-mid">TOP 3 · estático</span></div>
+      <div class="ad-card-title">"White. Champagne. Anthracite. Silver."</div>
+      <div class="ad-metrics">
+        <div class="ad-metric"><div class="ad-metric-val">€16,15</div><div class="ad-metric-lbl">Gasto</div></div>
+        <div class="ad-metric"><div class="ad-metric-val">418</div><div class="ad-metric-lbl">Visitas Perfil</div></div>
+        <div class="ad-metric"><div class="ad-metric-val" style="color:var(--warn)">€0,039</div><div class="ad-metric-lbl">Coste/Visita</div></div>
+        <div class="ad-metric"><div class="ad-metric-val">11.543</div><div class="ad-metric-lbl">Impresiones</div></div>
+        <div class="ad-metric"><div class="ad-metric-val">3,62%</div><div class="ad-metric-lbl">CTR</div></div>
+        <div class="ad-metric"><div class="ad-metric-val" style="color:var(--muted)">—</div><div class="ad-metric-lbl">Estático</div></div>
+      </div>
+      <div class="kpi-badge badge-warn" style="margin-top:12px;">Sin vídeo — Coste/Visita razonable pero CTR bajo</div>
+    </div>
+
+    <div class="ad-card">
+      <div class="ad-rank-badge"><span class="ad-rank rank-bot">SIN VOLUMEN</span></div>
+      <div class="ad-card-title">"change the game con bonabola"</div>
+      <div class="ad-metrics">
+        <div class="ad-metric"><div class="ad-metric-val">€0,88</div><div class="ad-metric-lbl">Gasto</div></div>
+        <div class="ad-metric"><div class="ad-metric-val">15</div><div class="ad-metric-lbl">Visitas Perfil</div></div>
+        <div class="ad-metric"><div class="ad-metric-val" style="color:var(--bad)">€0,059</div><div class="ad-metric-lbl">Coste/Visita</div></div>
+        <div class="ad-metric"><div class="ad-metric-val">317</div><div class="ad-metric-lbl">Impresiones</div></div>
+        <div class="ad-metric"><div class="ad-metric-val">4,89%</div><div class="ad-metric-lbl">CTR</div></div>
+        <div class="ad-metric"><div class="ad-metric-val">21,5%</div><div class="ad-metric-lbl">Hook 3s</div></div>
+      </div>
+      <div class="kpi-badge badge-bad" style="margin-top:12px;">Algoritmo no le da volumen · pendiente A/B test</div>
+    </div>
+  </div>
+
+  <div class="subheading" style="margin-top:36px;">MOFU · Creativos hacia conversión (palas)</div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Anuncio (pala)</th>
+          <th>Gasto</th>
+          <th>Imp.</th>
+          <th>Clics</th>
+          <th>LPV</th>
+          <th>ATC</th>
+          <th>CPATC</th>
+          <th>Compras</th>
+          <th>CTR</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:rgba(0,212,170,0.05);">
+          <td><strong>AD4 · Jugador Brazo en Alto</strong> 🏆</td>
+          <td class="num">€31,16</td>
+          <td class="num">10.096</td>
+          <td class="num">118</td>
+          <td class="num">104</td>
+          <td class="num num-accent">5</td>
+          <td class="num num-good">€6,23</td>
+          <td class="num num-bad">0</td>
+          <td class="num">1,17%</td>
+        </tr>
+        <tr>
+          <td><strong>AD3 · Pala Negra Apoyada en Red</strong></td>
+          <td class="num num-accent">€63,54</td>
+          <td class="num">17.843</td>
+          <td class="num">271</td>
+          <td class="num">265</td>
+          <td class="num">3</td>
+          <td class="num num-warn">€21,18</td>
+          <td class="num num-bad">0</td>
+          <td class="num num-good">1,52%</td>
+        </tr>
+        <tr>
+          <td><strong>AD12 · Bevel Blanca rodeada de bolas</strong></td>
+          <td class="num">€17,51</td>
+          <td class="num">5.307</td>
+          <td class="num">48</td>
+          <td class="num">36</td>
+          <td class="num">1</td>
+          <td class="num num-warn">€17,51</td>
+          <td class="num num-bad">0</td>
+          <td class="num">0,90%</td>
+        </tr>
+        <tr>
+          <td>AD5 · Jugador Defensivo</td>
+          <td class="num">€15,59</td>
+          <td class="num">4.543</td>
+          <td class="num">36</td>
+          <td class="num">29</td>
+          <td class="num">1</td>
+          <td class="num num-warn">€15,59</td>
+          <td class="num num-bad">0</td>
+          <td class="num num-bad">0,79%</td>
+        </tr>
+        <tr>
+          <td><strong>AD8 · Heptra Dorada</strong></td>
+          <td class="num">€23,39</td>
+          <td class="num">6.901</td>
+          <td class="num">89</td>
+          <td class="num">73</td>
+          <td class="num num-bad">0</td>
+          <td class="num" style="color:var(--muted)">—</td>
+          <td class="num num-bad">0</td>
+          <td class="num">1,29%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="alert alert-warn">
+    <strong>⚠ Hallazgo importante en MOFU:</strong> El ganador real del MOFU no es AD3 (que tenía mejor CTR) sino <strong>AD4 · Jugador Brazo en Alto</strong>: con la mitad del gasto que AD3, generó <strong>5 ATC con CPATC de €6,23</strong> — más del triple de eficiencia. AD3 tiene mejor CTR (1,52%) pero peor conversión a carrito (CPATC €21,18). En mayo: <strong>concentrar más presupuesto en AD4</strong> y testear copy/CTA en AD3 para mejorar el paso clic→carrito.
+  </div>
+
+  <div class="alert alert-bad">
+    <strong>⚠ El verdadero problema: ATC → Compra:</strong> Tenemos 10 carritos generados pero 0 compras cerradas. El embudo TOFU→MOFU está moviendo intención correctamente. La caída final (de carrito a checkout) sugiere problema en la última etapa: revisar checkout, métodos de pago, gastos de envío visibles antes de pagar y políticas de devolución. Es la prioridad #1 del plan de mayo.
+  </div>
+
+  <div class="subheading" style="margin-top:36px;">Funnel de retención de vídeo (TOFU)</div>
+
+  <div class="video-funnel">
+    <div class="funnel-title">Retención en vídeo · creativos TOFU agregados</div>
+    <div class="funnel-row">
+      <div class="funnel-label">Impresiones</div>
+      <div class="funnel-bar"><div class="funnel-fill" style="width:100%;background:linear-gradient(90deg,var(--accent),#00b8a0);">179.608</div></div>
+      <div class="funnel-pct">100%</div>
+    </div>
+    <div class="funnel-row">
+      <div class="funnel-label">Vídeo 3s+</div>
+      <div class="funnel-bar"><div class="funnel-fill" style="width:34.4%;background:linear-gradient(90deg,#00d4aa,#10b981);">61.808</div></div>
+      <div class="funnel-pct">34,4%</div>
+    </div>
+    <div class="funnel-row">
+      <div class="funnel-label">Al 25%</div>
+      <div class="funnel-bar"><div class="funnel-fill" style="width:23.1%;background:linear-gradient(90deg,#10b981,#14b8a6);">41.434</div></div>
+      <div class="funnel-pct">23,1%</div>
+    </div>
+    <div class="funnel-row">
+      <div class="funnel-label">Al 50%</div>
+      <div class="funnel-bar"><div class="funnel-fill" style="width:17%;background:linear-gradient(90deg,#7c3aed,#a78bfa);">30.563</div></div>
+      <div class="funnel-pct">17,0%</div>
+    </div>
+    <div class="funnel-row">
+      <div class="funnel-label">ThruPlays</div>
+      <div class="funnel-bar"><div class="funnel-fill" style="width:14.6%;background:linear-gradient(90deg,#f59e0b,#fbbf24);">26.202</div></div>
+      <div class="funnel-pct">14,6%</div>
+    </div>
+    <div class="funnel-row">
+      <div class="funnel-label">Al 95%</div>
+      <div class="funnel-bar"><div class="funnel-fill" style="width:7.3%;background:linear-gradient(90deg,#ff6b35,#f97316);">13.113</div></div>
+      <div class="funnel-pct">7,3%</div>
+    </div>
+    <div class="funnel-row">
+      <div class="funnel-label">Al 100%</div>
+      <div class="funnel-bar"><div class="funnel-fill" style="width:6.9%;background:linear-gradient(90deg,#ef4444,#dc2626);">12.459</div></div>
+      <div class="funnel-pct">6,9%</div>
+    </div>
+  </div>
+
+  <div class="kpi-grid" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr));">
+    <div class="kpi-card" style="--accent-color:var(--accent)">
+      <div class="kpi-label">Hook Rate (V3s/Imp)</div>
+      <div class="kpi-value">34,4%</div>
+      <div class="kpi-sub">% que pasa de 3s</div>
+      <div class="kpi-badge badge-good">✓ Sano para Stories</div>
+    </div>
+    <div class="kpi-card" style="--accent-color:var(--accent3)">
+      <div class="kpi-label">Hold Rate (Thru/V3s)</div>
+      <div class="kpi-value">42,4%</div>
+      <div class="kpi-sub">Retención post-hook</div>
+      <div class="kpi-badge badge-good">✓ Buen contenido</div>
+    </div>
+    <div class="kpi-card" style="--accent-color:var(--accent2)">
+      <div class="kpi-label">Completion 100%</div>
+      <div class="kpi-value">20,2%</div>
+      <div class="kpi-sub">% V3s que ven hasta el final</div>
+      <div class="kpi-badge badge-good">✓ Por encima de la media</div>
+    </div>
+    <div class="kpi-card" style="--accent-color:var(--good)">
+      <div class="kpi-label">ThruPlays totales</div>
+      <div class="kpi-value">26.202</div>
+      <div class="kpi-sub">Visualizaciones cualificadas</div>
+      <div class="kpi-badge badge-good">▲ +foco notoriedad</div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <strong>Lectura del funnel de vídeo:</strong> 1 de cada 3 impresiones convierte en V3s (hook sano para Stories), y casi 1 de cada 2 visualizaciones de 3s aguanta hasta ThruPlay (hold rate 42,4%). El creativo "Bonabola is born here." tiene el mejor hook (40,8%) y hold (49,5%). El creativo "tubular frame…resin…" tiene hook menor (33%) pero consigue el mejor Coste por Visita — su público lo escucha aunque no le enganche el primer frame, lo que indica buen targeting al segmento técnico/aficionado del pádel.
+  </div>
+</div>
+
+<!-- 08 AES (NUEVA FÓRMULA) -->
+<div class="section">
+  <div class="section-number">08</div>
+  <h2 class="section-heading">Audience Efficiency Score</h2>
+
+  <p style="color:var(--muted);margin-bottom:24px;font-size:14px;line-height:1.7;max-width:780px;">
+  Métrica propia para identificar qué segmentos demográficos rinden mejor por euro invertido en TOFU. Mide eficiencia <strong>relativa a la media de la campaña</strong> — un segmento con AES 100 rinde exactamente como la media; AES 130 rinde un 30% mejor; AES 70 rinde un 30% peor.
+  </p>
+
+  <div class="insight" style="margin-top:0;margin-bottom:24px;background:linear-gradient(135deg,rgba(124,58,237,0.06),rgba(0,212,170,0.04));">
+    <strong style="color:#a78bfa;">📌 ¿Cómo leer el AES? (explicación rápida)</strong><br/><br/>
+    Es una nota del 0 al 200 que ponemos a cada audiencia para ver de un vistazo cuáles rinden bien y cuáles mal:
+    <ul style="margin:12px 0 12px 20px;padding:0;">
+      <li style="margin-bottom:6px;"><strong>100 = rinde como la media</strong> de tu campaña</li>
+      <li style="margin-bottom:6px;"><strong>Más de 100 = mejor</strong> que la media</li>
+      <li style="margin-bottom:6px;"><strong>Menos de 100 = peor</strong> que la media</li>
+    </ul>
+    Por ejemplo, "Hombre 65+" tiene <strong>AES 137</strong> → rinde un <strong>37% mejor</strong> que la media. "Hombre 18-24" tiene <strong>AES 72</strong> → rinde un 28% peor.<br/><br/>
+    El número sale de combinar dos cosas que vienen directamente de Meta: <strong>(1)</strong> cuánto cuesta cada visita al perfil en ese segmento (cuanto más barato, mejor nota), y <strong>(2)</strong> cuánta gente clica el anuncio en ese segmento (cuanto más clican, mejor nota).<br/><br/>
+    <em style="color:var(--muted);">Es un cálculo propio Navy — no es una métrica oficial de Meta. Lo usamos como herramienta interna para decidir rápido dónde concentrar gasto y dónde recortar.</em>
+  </div>
+
+  <div class="aes-formula">
+    <strong>Fórmula AES (Index v2):</strong><br/>
+    AES = ( <code>Index Coste/Visita</code> + <code>Index CTR</code> ) ÷ 2<br/>
+    <span style="color:var(--muted);font-size:12px;">donde:</span><br/>
+    Index Coste/Visita = (Coste/Visita medio campaña ÷ Coste/Visita segmento) × 100<br/>
+    Index CTR = (CTR segmento ÷ CTR medio campaña) × 100<br/>
+    <span style="color:var(--muted);font-size:12px;">Solo se evalúan segmentos con ≥1.000 impresiones para garantizar significancia estadística. Media campaña abril: Coste/Visita €0,032 · CTR ponderado 10,02%.</span>
+  </div>
+
+  <div class="alert alert-info">
+    <strong>ℹ Cambio respecto a versión anterior:</strong> En el reporte de marzo (interno) y la primera versión de abril, el AES usaba una fórmula con normalización min-max + 20% de peso en volumen. <strong>El componente de volumen castigaba injustamente a segmentos pequeños pero eficientes</strong> (ej. 65+ Mujer rinde 17% mejor que la media en eficiencia pura, pero la fórmula vieja lo penalizaba por bajo gasto). La nueva fórmula mide pura eficiencia y permite además <strong>comparar AES entre meses</strong>: si en mayo un segmento sube de AES 137 a AES 145, el rendimiento real ha mejorado un 8%, sin depender de cómo se mueven los segmentos vecinos.
+  </div>
+
+  <div class="aes-card">
+    <div class="aes-row" style="background:rgba(0,212,170,0.08);">
+      <div class="aes-rank">#1</div>
+      <div class="aes-seg">65+ · Hombre <span class="tag tag-male">M</span></div>
+      <div class="aes-bar"><div class="aes-fill" style="width:91.5%;"></div><div class="aes-baseline" style="left:66.7%;"></div></div>
+      <div class="aes-score num" style="color:var(--good)">137</div>
+    </div>
+    <div class="aes-row" style="background:rgba(0,212,170,0.05);">
+      <div class="aes-rank">#2</div>
+      <div class="aes-seg">55-64 · Hombre <span class="tag tag-male">M</span></div>
+      <div class="aes-bar"><div class="aes-fill" style="width:86%;"></div><div class="aes-baseline" style="left:66.7%;"></div></div>
+      <div class="aes-score num" style="color:var(--good)">129</div>
+    </div>
+    <div class="aes-row">
+      <div class="aes-rank">#3</div>
+      <div class="aes-seg">65+ · Mujer <span class="tag tag-female">F</span></div>
+      <div class="aes-bar"><div class="aes-fill" style="width:78%;"></div><div class="aes-baseline" style="left:66.7%;"></div></div>
+      <div class="aes-score num" style="color:var(--good)">117</div>
+    </div>
+    <div class="aes-row">
+      <div class="aes-rank">#4</div>
+      <div class="aes-seg">45-54 · Hombre <span class="tag tag-male">M</span></div>
+      <div class="aes-bar"><div class="aes-fill" style="width:74%;"></div><div class="aes-baseline" style="left:66.7%;"></div></div>
+      <div class="aes-score num" style="color:var(--accent)">111</div>
+    </div>
+    <div class="aes-row">
+      <div class="aes-rank">#5</div>
+      <div class="aes-seg">55-64 · Mujer <span class="tag tag-female">F</span></div>
+      <div class="aes-bar"><div class="aes-fill" style="width:72%;"></div><div class="aes-baseline" style="left:66.7%;"></div></div>
+      <div class="aes-score num" style="color:var(--accent)">108</div>
+    </div>
+    <div class="aes-row">
+      <div class="aes-rank">#6</div>
+      <div class="aes-seg">45-54 · Mujer <span class="tag tag-female">F</span></div>
+      <div class="aes-bar"><div class="aes-fill" style="width:69%;"></div><div class="aes-baseline" style="left:66.7%;"></div></div>
+      <div class="aes-score num">104</div>
+    </div>
+    <div class="aes-row">
+      <div class="aes-rank">#7</div>
+      <div class="aes-seg">35-44 · Hombre <span class="tag tag-male">M</span></div>
+      <div class="aes-bar"><div class="aes-fill" style="width:63%;"></div><div class="aes-baseline" style="left:66.7%;"></div></div>
+      <div class="aes-score num">95</div>
+    </div>
+    <div class="aes-row">
+      <div class="aes-rank">#8</div>
+      <div class="aes-seg">35-44 · Mujer <span class="tag tag-female">F</span></div>
+      <div class="aes-bar"><div class="aes-fill" style="width:61%;"></div><div class="aes-baseline" style="left:66.7%;"></div></div>
+      <div class="aes-score num">92</div>
+    </div>
+    <div class="aes-row">
+      <div class="aes-rank">#9</div>
+      <div class="aes-seg">25-34 · Hombre <span class="tag tag-male">M</span></div>
+      <div class="aes-bar"><div class="aes-fill" style="width:55%;background:linear-gradient(90deg,var(--warn),#fbbf24);"></div><div class="aes-baseline" style="left:66.7%;"></div></div>
+      <div class="aes-score num" style="color:var(--warn)">82</div>
+    </div>
+    <div class="aes-row">
+      <div class="aes-rank">#10</div>
+      <div class="aes-seg">25-34 · Mujer <span class="tag tag-female">F</span></div>
+      <div class="aes-bar"><div class="aes-fill" style="width:49%;background:linear-gradient(90deg,var(--warn),#fbbf24);"></div><div class="aes-baseline" style="left:66.7%;"></div></div>
+      <div class="aes-score num" style="color:var(--warn)">74</div>
+    </div>
+    <div class="aes-row">
+      <div class="aes-rank">#11</div>
+      <div class="aes-seg">18-24 · Mujer <span class="tag tag-female">F</span></div>
+      <div class="aes-bar"><div class="aes-fill" style="width:49%;background:linear-gradient(90deg,var(--bad),#fb7185);"></div><div class="aes-baseline" style="left:66.7%;"></div></div>
+      <div class="aes-score num" style="color:var(--bad)">73</div>
+    </div>
+    <div class="aes-row">
+      <div class="aes-rank">#12</div>
+      <div class="aes-seg">18-24 · Hombre <span class="tag tag-male">M</span></div>
+      <div class="aes-bar"><div class="aes-fill" style="width:48%;background:linear-gradient(90deg,var(--bad),#fb7185);"></div><div class="aes-baseline" style="left:66.7%;"></div></div>
+      <div class="aes-score num" style="color:var(--bad)">72</div>
+    </div>
+  </div>
+  <div style="font-size:11px;color:var(--muted);margin-top:8px;text-align:center;">La línea vertical blanca marca AES 100 (rendimiento medio campaña)</div>
+
+  <div class="insight" style="margin-top:24px;">
+    <strong>Conclusiones del AES:</strong> Seis segmentos baten la media de la campaña, todos en franja <strong>45+</strong>. El TOP-2 es <strong>hombres mayores de 55</strong>, con AES medio de 133. <strong>65+ Hombre lidera con AES 137</strong> — combina el mejor CTR de la campaña (16,6%) con el mejor Coste por Visita (€0,029). Pero solo recibe 4,5% del gasto: hay claramente oportunidad de reasignar. En el otro extremo, <strong>los 4 últimos puestos están en 18-34</strong> (AES 72-82): rinden entre un 18% y 28% peor que la media. Reasignar el ~17% del gasto que reciben hacia los segmentos top podría mejorar el Coste por Visita global del TOFU en torno a un 5-7%.
+  </div>
+</div>
+
+<!-- 09 NEXT STEPS -->
+<div class="section">
+  <div class="section-number">09</div>
+  <h2 class="section-heading">Next Steps Priorizados</h2>
+
+  <div class="step-card urgent">
+    <span class="step-priority">🔴 URGENTE</span>
+    <div class="step-title">Diagnosticar la caída ATC → Compra en MOFU</div>
+    <div class="step-desc">
+      Tenemos <strong>10 ATC pero 0 compras</strong>. La intención de compra existe — el problema está en el último tramo del checkout. Acciones: <strong>(a)</strong> verificar que el píxel de "Purchase" esté disparando correctamente (también revisar Conversions API), <strong>(b)</strong> hacer una compra de prueba completa para detectar fricciones (errores, gastos de envío sorpresa, formas de pago limitadas), <strong>(c)</strong> revisar la velocidad del checkout en móvil (donde llegan el 95% de los clics). Es la prioridad #1 del mes.
+    </div>
+  </div>
+
+  <div class="step-card urgent">
+    <span class="step-priority">🔴 URGENTE</span>
+    <div class="step-title">Activar retargeting con la audiencia caliente acumulada</div>
+    <div class="step-desc">
+      Con ~19.500 visitas al perfil de Instagram acumuladas (marzo + abril), 26.200 ThruPlays y 507 LPV en abril, ya hay masa crítica para construir una <strong>audiencia personalizada de retargeting</strong> y lanzar un AdSet específico hacia compra con creatividades de producto y oferta directa. Es el paso lógico TOFU → MOFU → BOFU que cierra el funnel.
+    </div>
+  </div>
+
+  <div class="step-card important">
+    <span class="step-priority">🟡 IMPORTANTE</span>
+    <div class="step-title">Concentrar gasto MOFU en AD4 (mejor CPATC)</div>
+    <div class="step-desc">
+      <strong>AD4 (Jugador Brazo en Alto)</strong> consigue 5 ATC con CPATC €6,23 — frente a €21,18 de AD3. Acción: en mayo, asignar manualmente más presupuesto a AD4 (subir bid o duplicar el ad en otro adset) y reducir AD3 a la mitad para liberar inversión. Probar también una variante de AD4 con CTA más explícito ("Compra ahora desde €X" o "Edición limitada — pocas unidades").
+    </div>
+  </div>
+
+  <div class="step-card important">
+    <span class="step-priority">🟡 IMPORTANTE</span>
+    <div class="step-title">Limitar audiencia 18-34 en TOFU + escalar 45-65+</div>
+    <div class="step-desc">
+      El AES muestra que los 4 segmentos peores (todos en 18-34) rinden entre un 18% y 28% por debajo de la media. Reciben el 17% del gasto pero entregan CTR &lt; 5%. Acción: <strong>excluir tramo 18-24</strong> del Broad y limitar 25-34 con bid bajo. Crear un AdSet duplicado <strong>limitado a 45-65+ masculino</strong> (los 3 segmentos top, AES medio 126) con €5-€7/día durante 2 semanas para validar concentración.
+    </div>
+  </div>
+
+  <div class="step-card improve">
+    <span class="step-priority">🟣 MEJORA</span>
+    <div class="step-title">Test de creatividad femenina diferenciada</div>
+    <div class="step-desc">
+      El CTR femenino (7,38%) es ligeramente superior al masculino (7,08%) y la cuota en gasto sube de 7,8% a 14,2%. El AES sitúa a las mujeres 45-65+ por encima de la media (AES 104-117). Acción: probar 1-2 creatividades con jugadoras femeninas o textil mujer en Stories, con presupuesto de test de €4/día. Si el Coste por Visita resiste, abrir AdSet de mujer dedicado en junio.
+    </div>
+  </div>
+
+  <div class="step-card improve">
+    <span class="step-priority">🟣 MEJORA</span>
+    <div class="step-title">Recoger feedback creativo: vídeo "Nuria" sin gasto</div>
+    <div class="step-desc">
+      El anuncio "VÍDEO NURIA" aparece en la cuenta sin haber recibido gasto/impresiones en abril. Confirmar con cliente si era un creativo previsto que no se llegó a aprobar/activar, o si se quedó sin presupuesto al concentrar el delivery en los dos top performers. Decisión a cerrar antes de mayo.
+    </div>
+  </div>
+</div>
+
+<!-- 10 CONCLUSIÓN -->
+<div class="section">
+  <div class="section-number">10</div>
+  <h2 class="section-heading">Conclusión</h2>
+
+  <div class="conclusion-block">
+    <p>Abril cierra como un <strong>mes de transición ejecutado correctamente</strong>. La cuenta ha hecho dos cosas a la vez sin perder eficiencia: ha duplicado el presupuesto del TOFU (de €211 a €404) sin que se note en el Coste por Visita al Perfil — €0,032 vs €0,031 en marzo, prácticamente plano — y ha abierto el primer canal hacia conversión (MOFU) con €151 adicionales. Es exactamente el comportamiento que se espera de una cuenta sana en su segundo mes operativo.</p>
+
+    <p>El motor TOFU mantiene su eje: <strong>Stories sigue siendo el placement reina</strong> (95% del gasto, mejor CTR, mejor Coste por Visita), <strong>hombres 45+</strong> siguen siendo el núcleo del buyer persona, y los dos creativos ganadores ("Bonabola is born here." y "tubular frame…resin…") aguantan el mes con Coste por Visita por debajo de €0,032 y CTR por encima del 7,3%. La única novedad estructural en TOFU es la pausa definitiva de la AUDIENCIA PÁDEL el 7 de abril — decisión coherente con la lectura de marzo de que rendía igual que Broad sin aportar diferenciación.</p>
+
+    <p>La gran apuesta del mes es el <strong>lanzamiento del MOFU el 15 de abril</strong>. Aquí los datos cuentan una historia matizada: <strong>el embudo está moviendo intención de compra correctamente</strong> — 562 clics, 507 visitas a landing y <strong>10 añadidos al carrito</strong> en 16 días. El problema no está en captar interés sino en cerrar la venta: <strong>0 compras registradas</strong> sobre 10 ATC apunta a fricción en el checkout (configuración de píxel, gastos de envío, métodos de pago, o velocidad móvil). Es un problema diagnosticable y resoluble — pero hasta resolverlo, el MOFU no será sostenible.</p>
+
+    <p>Dentro del MOFU hay un hallazgo importante: <strong>AD4 (Jugador Brazo en Alto) es el creativo ganador real</strong>, no AD3. AD4 consigue 5 ATC con CPATC €6,23 — más del triple de eficiencia que AD3 (€21,18). En mayo concentraremos más presupuesto en AD4 y testaremos copys con CTA más directo en AD3.</p>
+
+    <p>El AES con la nueva fórmula (Index 100=media campaña) da una señal clara para optimizar TOFU en mayo: <strong>el segmento 65+ masculino lidera con AES 137</strong> (rinde un 37% mejor que la media), seguido de 55-64 masculino (AES 129) y 65+ femenino (AES 117). En el otro extremo, los <strong>4 segmentos en franja 18-34</strong> rinden entre un 18% y 28% peor que la media — candidatos claros a exclusión o limitación. Reasignar el ~17% del gasto que reciben hacia los segmentos top podría mejorar el Coste por Visita global del TOFU en torno a un 5-7%.</p>
+
+    <p>La frecuencia se mantiene en 1,53× para TOFU y 1,32× para MOFU. <strong>Sin saturación a la vista</strong>. Hay margen estructural para escalar más en mayo si el MOFU empieza a convertir.</p>
+
+    <p><strong>Tres focos para mayo</strong> — (1) <strong>resolver la caída ATC→Compra en MOFU</strong> con auditoría completa de checkout y píxel, (2) <strong>reasignar gasto TOFU</strong> hacia 45-65+ masculino siguiendo el AES, y (3) <strong>activar el primer retargeting</strong> con la audiencia ya construida (~19.500 visitas perfil acumuladas marzo+abril). Si esas tres palancas funcionan, mayo debería ser el primer mes con ROAS medible para Bonabola.</p>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-logo">B O N A B O L A</div>
+  <div class="footer-meta">Reporte Meta Ads · Abril 2026 · España</div>
+  <div class="footer-contact">
+    Elaborado por <a href="mailto:carlos@navymarketing.es">Navy Marketing</a> · Carlos (Meta Ads) &amp; Nuria (Email Marketing)<br/>
+    carlos@navymarketing.es · nuria@navymarketing.es · 681 24 33 55
+  </div>
+</div>
+
+</body>
+</html>
